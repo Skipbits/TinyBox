@@ -5,9 +5,11 @@ bin-release/
 
 # Other files and folders
 .settings/
-/Library
-/Temp
-/Bin
+Library/
+Temp/
+Bin/
+*.sln
+*.csharp
 
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
