@@ -7,14 +7,12 @@ using UnityEngine;
 /// Utiity "Underscore" Class
 /// Author : iam@debabhishek.com
 /// </summary>
-///
 
 namespace _unity
 {
     /// <summary>
     /// A utility library containing lots of usefull and everyday code helpers
     /// </summary>
-    ///
     public static class _
     {
         private static string logtype = "Debug"; // Debug / File /
@@ -93,11 +91,9 @@ namespace _unity
         ///     void OnGUI(){ _.GUISetup(800f,480f); }
         ///
         /// </example>
-        public static void GUISetup(float customWidth = 1366f, float customHeight = 768f,System.Action more=null)
+        public static void GUISetup(float customWidth = 1366f, float customHeight = 768f)
         {
             GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / customWidth, Screen.height / customHeight, 1f));
-
-            if (more != null) more();
         }
 
         #endregion GUI Helpers
