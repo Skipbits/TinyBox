@@ -1,5 +1,6 @@
 ﻿using System;
 using _unity;
+using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -9,7 +10,12 @@ public class GameManager : Singleton<GameManager>
 
     private GameStates gameState;
     public string gameName = "TinyBox";
-    public float shrinkScale = 0.125f;
+    public GameObject navBar, winMenu;
+
+    [HideInInspector]
+    public float moveBarValue = 0f;
+    
+    public bool constantMove = false;
 
     public void Initialize()
     {
@@ -70,6 +76,20 @@ public class GameManager : Singleton<GameManager>
             case GameStates.quit:
 
                 break;
+
+            case GameStates.levelInit:
+                
+                if(Application.loadedLevelName.Length>5 && Application.loadedLevelName.Substring(0,5)=="Level")
+                {
+                    _.l("Initiaitig Level");
+                          }
+                else
+                {
+                    _.l("Not a level");
+                  }
+
+                ChangeState(GameStates.active);
+                break;
         }
 
         _.l("[Game Manager] Game State: " + gameState);
@@ -77,6 +97,13 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion Game State Manipulation
+
+    public void ChangeLevel(int level)
+    {
+        Application.LoadLevel("Level" + level);
+
+        ChangeState(GameStates.levelInit);
+    }
 }
 
 #region States
@@ -89,7 +116,8 @@ public enum GameStates
     resume = 3, //re-initialize GUI, stuffs, maybe
     win = 4,
     loose = 5,
-    quit = 6
+    quit = 6,
+    levelInit = 7
 }
 
 //Specifically for Turn Based Game
@@ -102,6 +130,14 @@ public enum PlayerStates
     win = 4,
     loose = 5,
     die = 6
+}
+
+public enum ShrinkableType
+{
+    Hero,
+    Handler,
+    Block,
+    Box
 }
 
 #endregion States

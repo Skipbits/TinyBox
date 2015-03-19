@@ -22,6 +22,7 @@ public class star : MonoBehaviour {
             coll.transform.rigidbody2D.isKinematic = true;
            // Time.timeScale = 0;
             _.l("Game WIN");
+            GameObject.Find("GameGUI").transform.FindChild("WinMenu").gameObject.SetActive(true);
         }
 
     }
